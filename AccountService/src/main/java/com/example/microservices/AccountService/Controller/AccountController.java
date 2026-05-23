@@ -9,9 +9,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@Controller
+@RestController
 @RequestMapping("/account")
 public class AccountController {
+
+
+
+    @GetMapping("/message")
+    public String getMessage() {
+        return accountservice.getMessage();
+    }
+
+
     @Autowired
     Accountservice accountservice;
 

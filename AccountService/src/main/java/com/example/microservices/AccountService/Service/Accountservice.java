@@ -2,12 +2,20 @@ package com.example.microservices.AccountService.Service;
 
 import com.example.microservices.AccountService.Model.Account;
 import com.example.microservices.AccountService.Repository.AccountRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@RefreshScope
 public class Accountservice {
+
+
+    @Value("${custom.message}")
+    private String message;
+
     @Autowired
     AccountRepo accountRepo;
     public void addAccount(Account account) {
@@ -20,5 +28,9 @@ public class Accountservice {
 
     public Account GetAccountById(int id) {
         return accountRepo.findById(id).orElse(null);
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
