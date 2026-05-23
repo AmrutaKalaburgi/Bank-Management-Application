@@ -29,3 +29,83 @@ git add ConfigServer
 git add EurekaServer
 git commit -m " Added Customer service;Config server;Eureka Server" 
 git push origin main
+
+
+Issues:
+1)java.lang.NullPointerException: Cannot invoke "com.example.microservices.AccountService.Repository.AccountRepo.findAll()"
+Solution : @Autowired
+class AccountService {
+
+    private AccountRepo accountRepo;  // ❌ not initialized
+
+    public List<Account> getAllAccounts() {
+        return accountRepo.findAll(); // 💥 NullPointerException
+    }
+}
+
+NullPointerException here =
+Spring didn't inject bean → field is null
+2)StaleObjectStateException ✅
+Postman i passed ID also
+DB generates ID ✅
+You should NOT pass it ❌
+
+3)Cannot map `null` into type `int`
+→ HttpMessageNotReadableException
+→ 400 BAD REQUEST
+
+Solution:
+private int id;        // ❌ primitive
+private int balance;   // ❌ primitive
+null → int ❌ not allowed
+private Long id;   // ✅ use wrapper
+
+int → Integer  
+double → Double  
+long → Long  
+Example
+
+localhost:8080/account/addAccount
+{
+"id": 1,
+"accountNumber": "9611315919",
+"accountType": "Savings",
+"balance": 300.0
+}
+{
+"accountNumber":"987654321",
+"accountType":"Savings",
+"balance":400
+}
+{
+"id": 2,
+"accountNumber": "9886043076",
+"accountType": "Savings",
+"balance": 1000.0
+}
+localhost:8081/customer/addcustomer
+{
+"name":"Amruta",
+"age":25,
+"gender":"female",
+"email":"kalaburgi@amruta@gmail.com",
+"phoneNumber":"9886043076",
+"city":"Gadag"
+}
+
+{
+"name":"Anu",
+"age":24,
+"gender":"female",
+"email":"kalaburgi@anu@gmail.com",
+"phoneNumber":"8904878787",
+"city":"Gadag"
+}
+{
+"name":"Akshata",
+"age":20,
+"gender":"female",
+"email":"kalaburgi@akshu@gmail.com",
+"phoneNumber":"1234554321",
+"city":"Gadag"
+}
