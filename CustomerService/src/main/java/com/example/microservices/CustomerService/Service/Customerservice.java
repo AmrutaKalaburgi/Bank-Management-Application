@@ -2,12 +2,14 @@ package com.example.microservices.CustomerService.Service;
 
 import com.example.microservices.CustomerService.Model.Customer;
 import com.example.microservices.CustomerService.Repository.CustomerRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class Customerservice {
+    @Autowired
     CustomerRepo customerRepo;
 
      public Customerservice(CustomerRepo customerRepo) {
