@@ -131,3 +131,24 @@ CustomerService
 Config Repo (GitHub)
 ├── CustomerService.properties ✅ (all main config)
 ├── AccountService.properties
+
+Why we need FeignClient or restTemplate when we can get data AccountDetails in getCustomers method of CustomerService by using @OneToOne mapping?
+JPA @ManyToOne works only within the same database
+So if someone adds a customer via POST localhost:8081/customer/addcustomer, that data lives in CustomerService's DB. AccountService has no idea it exists.
+Feign Client / RestTemplate works across separate databases
+AccountService doesn't store customer data at all — it asks CustomerService for it at runtime. One source of truth.
+JPA @ManyToOne is perfect for a single Spring Boot app (monolith). Once you split into microservices with separate databases, you must use Feign/RestTemplate/WebClient to communicate between them.
+
+
+List<Account> list = accounts.stream().toList();
+
+list.add(new Account());  // ❌ Runtime Exception
+
+
+List<Account> list = accounts.stream()
+.collect(Collectors.toList());
+
+list.add(new Account());  // ✅ Works
+Optional<Account> optional = accountRepo.findById(id);
+Optional is a container object that may or may not contain a value.
+Account OR no value (null)

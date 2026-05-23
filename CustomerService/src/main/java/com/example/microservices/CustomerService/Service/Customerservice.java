@@ -4,6 +4,7 @@ import com.example.microservices.CustomerService.Model.Customer;
 import com.example.microservices.CustomerService.Repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class Customerservice {
     @Autowired
     CustomerRepo customerRepo;
 
+    @Autowired
+    RestTemplate restTemplate;
      public Customerservice(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -20,7 +23,7 @@ public class Customerservice {
          customerRepo.save(customer);
 
     }
-    public List<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers(){
         return customerRepo.findAll();
     }
 
