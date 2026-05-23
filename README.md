@@ -29,6 +29,13 @@ git add ConfigServer
 git add EurekaServer
 git commit -m " Added Customer service;Config server;Eureka Server" 
 git push origin main
+git add README.md
+git add AccountService
+git add CustomerService
+git add ConfigServer
+git add EurekaServer
+git commit -m "Account Service and Customer service updated"
+git push origin main
 
 
 Issues:
@@ -109,3 +116,18 @@ localhost:8081/customer/addcustomer
 "phoneNumber":"1234554321",
 "city":"Gadag"
 }
+
+What happens if both have same property?
+👉 Priority order:
+Git Config (HIGH priority ✅)
+↓
+Local application.properties
+
+✅ So Git value overrides local
+
+CustomerService
+├── application.properties   ✅ (minimal config)
+
+Config Repo (GitHub)
+├── CustomerService.properties ✅ (all main config)
+├── AccountService.properties
