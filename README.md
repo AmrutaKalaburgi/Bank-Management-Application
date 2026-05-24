@@ -85,7 +85,6 @@ localhost:8080/account/addAccount
 "balance":400
 }
 {
-"id": 2,
 "accountNumber": "9886043076",
 "accountType": "Savings",
 "balance": 1000.0
@@ -171,3 +170,20 @@ gateway-server-webmvc ← you have this	spring-cloud-starter-gateway
 Type	MVC (servlet)	Reactive (WebFlux)
 Discovery locator	❌ Not supported	✅ Supported
 Route config key	spring.cloud.gateway.mvc.routes	spring.cloud.gateway.routes
+
+Issue:
+404 Not Found when accessing via gateway
+
+lb://AccountService  →  Needs spring-cloud-loadbalancer to look up
+"AccountService" in Eureka registry
+
+http://localhost:8080 →  Goes directly, no discovery needed
+add the spring-cloud-starter-loadbalancer dependency to the pom for when we switch back to lb://
+
+Still issue exists:
+New Version 2025.1.1
+spring.cloud.gateway.server.webmvc.routes
+
+old config:
+spring.cloud.gateway.mvc.routes
+
