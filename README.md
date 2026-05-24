@@ -152,3 +152,22 @@ list.add(new Account());  // ✅ Works
 Optional<Account> optional = accountRepo.findById(id);
 Optional is a container object that may or may not contain a value.
 Account OR no value (null)
+
+GatewayIssue:
+localhost:8765/accountservice/account/getAccounts
+{
+"timestamp": "2026-05-24T03:44:04.579Z",
+"status": 404,
+"error": "Not Found",
+"path": "/accountservice/account/getAccounts"
+}
+because:
+The pom has gateway-server-webmvc but the properties use spring.cloud.gateway.discovery.locator which only works with the reactive gateway. 
+Since you have the MVC gateway, fix the properties to use spring.cloud.gateway.mvc.routes:
+
+Root cause — you have two different gateways and they need different config:
+
+gateway-server-webmvc ← you have this	spring-cloud-starter-gateway
+Type	MVC (servlet)	Reactive (WebFlux)
+Discovery locator	❌ Not supported	✅ Supported
+Route config key	spring.cloud.gateway.mvc.routes	spring.cloud.gateway.routes
