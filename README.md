@@ -36,7 +36,7 @@ git add ConfigServer
 git add EurekaServer
 git commit -m "Account Service and Customer service updated"
 git push origin main
-
+git add SpringCloudGateway
 
 Issues:
 1)java.lang.NullPointerException: Cannot invoke "com.example.microservices.AccountService.Repository.AccountRepo.findAll()"
@@ -186,4 +186,34 @@ spring.cloud.gateway.server.webmvc.routes
 
 old config:
 spring.cloud.gateway.mvc.routes
+
+
+AuthService:
+
+first I created User repo and user entity 
+we need save username and password in db  and password should 
+be encrypted for security reasons so i have used BCryptPasswordEncoder to encrypt the password before saving it to the database.
+Authconfig define passwordEncoder
+
+Written postmapping to save/register user
+
+created JWT Service for generating token and validating token
+
+Auth controller and auth service will call these methods to register , generate token and validate Token
+
+SecurityConfig class to configure spring security and allow access to /auth/register 
+auth/token , auth/validate without authentication and secure other endpoints
+
+Generate token using secret and jwts
+
+If i pass incorrect credentials to /auth/token i will get 401 Unauthorized error 
+and if i pass correct credentials i will get token in response
+i added authentication manager to authenticate the user and generate token if authentication is successful
+
+
+
+
+
+
+
 
