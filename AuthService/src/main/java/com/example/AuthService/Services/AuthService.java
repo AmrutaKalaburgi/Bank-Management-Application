@@ -21,11 +21,11 @@ public class AuthService {
         userRepository.save(user);
         return "User added successfully";
     }
-    public String GenerateToken(String username){
-            return jwtService.generateToken(username);
+    public String GenerateToken(String name){
+            return jwtService.generateToken(name);
 
     }
-    public void ValidateToken(String token){
-        jwtService.validateToken(token);
-    }
+//    public void ValidateToken(String token){
+//        jwtService.validateToken(token);
+//    }
 }

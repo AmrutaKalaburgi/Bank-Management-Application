@@ -35,9 +35,9 @@ public class AuthController {
           }
     }
 
-    @GetMapping("/validate")
-    public String validateToken(@RequestParam String token){
-         authService.ValidateToken(token);
-         return "Token is valid";
-    }
+//    @GetMapping("/validate")
+//    public String validateToken(@RequestParam String token){
+//         authService.ValidateToken(token);
+//         return "Token is valid";
+//    }
 }

@@ -41,13 +41,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             // You can create an authentication object and set it in the context
             // For example, you can use UsernamePasswordAuthenticationToken for this
             // Remember to set the authorities/roles as well if needed
-            UserDetails userdetail=UserDetailService.loadUserByUsername(username);
-            if(jwtService.validateToken(String token, UserDetails userdetail)){
+           UserDetails userdetail=UserDetailService.loadUserByUsername(username);
+          if(jwtService.validateToken( token,  userdetail)){
                 // Create an authentication object and set it in the context
-                // You can use UsernamePasswordAuthenticationToken for this
+               // You can use UsernamePasswordAuthenticationToken for this
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userdetail, null, userdetail.getAuthorities());
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+               authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+               SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
         // After processing the JWT, continue with the filter chain

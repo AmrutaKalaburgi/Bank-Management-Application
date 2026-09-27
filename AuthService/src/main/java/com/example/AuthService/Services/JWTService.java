@@ -46,11 +46,13 @@ public class JWTService {
                 .parseClaimsJws(token)
                 .getBody();
     }
-        public String validateToken(String token,UserDetails UserDetails) {
+        public boolean validateToken(String token,UserDetails UserDetails) {
         String username = ExtractUsername(token);
         if(username.equals(UserDetails.getUsername()) && !isTokenExpired(token)) {
-            return "valid";
-    }
+            return true;
+        }else {
+            throw new RuntimeException("Invalid token");
+        }
         }
 
     private boolean isTokenExpired(String token) {

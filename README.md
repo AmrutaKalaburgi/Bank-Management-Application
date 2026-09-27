@@ -211,6 +211,12 @@ and if i pass correct credentials i will get token in response
 i added authentication manager to authenticate the user and generate token if authentication is successful
 
 
+15/06/2026
+Some how changes are removed So 
+
+git reset AccountService
+git checkout -- AccountService/src/main/java/com/example/microservices/AccountService/Service/Accountservice.java
+git checkout -- AccountService/src/main/java/com/example/microservices/AccountService/client/Customerclient.java
 
 
 
