@@ -11,7 +11,7 @@
 Git Commands
 git --version
 git init
-git remote add origin https://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@github.com/AmrutaKalaburgi16/MicroservicesExample.git 
+git remote add origin https://github.com/AmrutaKalaburgi16/MicroservicesExample.git 
 git remote -v
 git branch
 git branch -m main
@@ -32,7 +32,7 @@ git push origin main
 git add README.md
 git add AccountService
 git add CustomerService
-git add ConfigServer
+git add ConfigServerq
 git add EurekaServer
 git commit -m "Account Service and Customer service updated"
 git push origin main
